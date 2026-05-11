@@ -1,0 +1,35 @@
+{% extends "queue_app/base.html" %}
+{% block title %}Acceso Personal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="card-title mb-4 text-center">&#128274; Acceso Personal</h2>
+
+        {% if form.errors %}
+          <div class="alert alert-danger">Usuario o contraseña incorrectos.</div>
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="id_username" class="form-label fw-semibold">Usuario</label>
+            <input type="text" id="id_username" name="username" class="form-control form-control-lg"
+                   autofocus required>
+          </div>
+          <div class="mb-4">
+            <label for="id_password" class="form-label fw-semibold">Contraseña</label>
+            <input type="password" id="id_password" name="password" class="form-control form-control-lg" required>
+          </div>
+          <input type="hidden" name="next" value="{{ next }}">
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

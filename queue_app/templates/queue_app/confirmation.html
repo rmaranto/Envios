@@ -1,0 +1,32 @@
+{% extends "queue_app/base.html" %}
+{% block title %}Tu turno — {{ entry.turn_number }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6 text-center">
+    <div class="card shadow-sm">
+      <div class="card-body p-5">
+        <h2 class="text-success mb-3">&#10003; ¡Registrado!</h2>
+        <p class="text-muted mb-1">Tu número de turno es</p>
+        <div class="display-1 fw-bold text-primary mb-4">{{ entry.turn_number }}</div>
+
+        <div class="alert alert-info">
+          {% if ahead == 0 %}
+            &#128994; Eres el siguiente en ser atendido.
+          {% elif ahead == 1 %}
+            &#128993; Hay <strong>1 persona</strong> antes que tú.
+          {% else %}
+            &#128993; Hay <strong>{{ ahead }} personas</strong> antes que tú.
+          {% endif %}
+        </div>
+
+        <p class="text-muted small">Te enviaremos un SMS al número <strong>{{ entry.phone }}</strong> cuando sea tu turno.</p>
+
+        <a href="{% url 'queue_app:display' %}" class="btn btn-outline-primary mt-2">
+          Ver pantalla de turnos
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

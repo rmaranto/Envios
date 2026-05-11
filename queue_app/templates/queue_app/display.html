@@ -1,0 +1,62 @@
+{% extends "queue_app/base.html" %}
+{% block title %}Turno actual{% endblock %}
+
+{% block head_extra %}
+  <meta http-equiv="refresh" content="5">
+  <style>
+    body { background-color: #0d1117; color: #ffffff; }
+    .navbar { display: none; }
+    .container { max-width: 100%; }
+    .display-screen {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .turn-label {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: #8b949e;
+      margin-bottom: 1rem;
+    }
+    .turn-number {
+      font-size: 18rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #58a6ff;
+    }
+    .turn-name {
+      font-size: 2.5rem;
+      color: #f0f6fc;
+      margin-top: 1rem;
+    }
+    .no-turn {
+      font-size: 5rem;
+      color: #30363d;
+    }
+    .refresh-note {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      color: #484f58;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="display-screen">
+  {% if current %}
+    <div class="turn-label">Turno actual</div>
+    <div class="turn-number">{{ current.turn_number }}</div>
+    <div class="turn-name">{{ current.name }}</div>
+  {% else %}
+    <div class="turn-label">Turno actual</div>
+    <div class="no-turn">— — —</div>
+    <p class="text-muted mt-4">Esperando que se llame el primer turno</p>
+  {% endif %}
+</div>
+<div class="refresh-note">Se actualiza automáticamente cada 5 segundos</div>
+{% endblock %}
