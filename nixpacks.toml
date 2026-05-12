@@ -1,0 +1,4 @@
+[variables]
+DJANGO_SECRET_KEY = "cambiar-en-railway-variables"
+DEBUG = "False"
+ALLOWED_HOSTS = "*"
